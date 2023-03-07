@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        ShowLevel(GameData.levelCompletedCount);
+        ShowLevel(PrefsManager.Instance.Last_Level_Number);
     }
 
 
