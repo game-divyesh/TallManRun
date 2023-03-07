@@ -92,8 +92,6 @@ public class PlayerMovementControl : GenericSingletonClass<PlayerMovementControl
     public static event Action OnGameOver;
     public static event Action OnGameWin;
 
-
-
     public override void Awake()
     {
         base.Awake();
@@ -134,8 +132,6 @@ public class PlayerMovementControl : GenericSingletonClass<PlayerMovementControl
         ShopHeadItem.OnNewHeadWearSelected -= OnNewHeadWearSelected;
     }
 
-
-
     private void FixedUpdate()
     {
         if (GameManager.Instance.isGameStart)
@@ -163,7 +159,6 @@ public class PlayerMovementControl : GenericSingletonClass<PlayerMovementControl
             bounceMultiplier += 0.2f;
         }
     }
-
 
     private void PlayerMovement()
     {
@@ -210,7 +205,6 @@ public class PlayerMovementControl : GenericSingletonClass<PlayerMovementControl
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), rotationLerpValue * Time.deltaTime);
 
     }
-
 
     private void CityPlayerMovement()
     {
