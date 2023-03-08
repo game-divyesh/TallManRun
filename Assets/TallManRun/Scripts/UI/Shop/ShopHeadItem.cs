@@ -75,6 +75,7 @@ public class ShopHeadItem : MonoBehaviour
     public void OwnItem(int index)
     {
         GameData.PurchasedHeadItems[index] = index;
+        PrefsManager.Instance.BuyHeadItems(index);
         //GameData.PurchasedHeadItems.Sort();
     }
 

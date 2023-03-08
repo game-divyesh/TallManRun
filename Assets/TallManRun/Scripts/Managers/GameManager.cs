@@ -33,9 +33,12 @@ public class GameManager : GenericSingletonClass<GameManager>
     public override void Awake()
     {
         base.Awake();
-        Application.targetFrameRate = 120;
-        SetGameData();
+        Application.targetFrameRate = 120;     
+    }
 
+    private void Start()
+    {
+        SetGameData();
     }
 
     public void ShowLoseScreen()
@@ -59,13 +62,20 @@ public class GameManager : GenericSingletonClass<GameManager>
     private void OnLevelWin()
     {
         isGameStart = false;
+        
         GameData.CurrentLevel++;
-        GameData.levelCompletedCount++;
+        PrefsManager.Instance.Current_Level_Number = GameData.CurrentLevel;
+
+        if (GameData.levelCompletedCount == GameData.CurrentLevel - 1)
+        {
+            GameData.levelCompletedCount++;
+            PrefsManager.Instance.Last_Level_Number = GameData.levelCompletedCount;
+        }
         SoundManager.Instance.PlaySound(SoundManager.Instance.levelWinSound);
 
         ViewController.Instance.ChangeScreen(ScreenName.CompleteLevelScreen);
 
-        levelManagerScript.ShowLevel(GameData.levelCompletedCount);
+        levelManagerScript.ShowLevel(GameData.CurrentLevel);
 
         SetPlayerDataOnWinorLoss();
 
@@ -136,6 +146,7 @@ public class GameManager : GenericSingletonClass<GameManager>
     private void UpdateDiamondCount(int value)
     {
         GameData.diamondCount += value;
+        PrefsManager.Instance.Diamonds = GameData.diamondCount;
         OnDiamondCountUpdated?.Invoke();
     }
 
@@ -147,11 +158,18 @@ public class GameManager : GenericSingletonClass<GameManager>
 
     private void SetGameData()
     {
-        GameData.CurrentLevel = 1;
+        GameData.CurrentLevel = PrefsManager.Instance.Current_Level_Number;
+        GameData.diamondCount = PrefsManager.Instance.Diamonds;
+        GameData.PlayerMaterialColor = PrefsManager.Instance.Player_Material_Color_Index;
+        UpdateDiamondCount(0);
         GameData.CurrentLevelsDeck = 0;
 
         GameData.PurchasedMaterialItems = new int[12];
         GameData.PurchasedHeadItems = new int[12] { 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+        for (int i = 0; i < GameData.PurchasedHeadItems.Length; i++)
+        {
+            GameData.PurchasedHeadItems[i] = PrefsManager.Instance.CheckHeadItems(i);
+        }
     }
 
     private void SetPlayerDataOnWinorLoss()

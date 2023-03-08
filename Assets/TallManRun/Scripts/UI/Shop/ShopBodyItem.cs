@@ -41,6 +41,7 @@ public class ShopBodyItem : MonoBehaviour
         costTextObj.gameObject.SetActive(false);
 
         GameData.PlayerMaterialColor = materialColor;
+        PrefsManager.Instance.Player_Material_Color_Index = materialColor;
         OnNewMaterialSelected?.Invoke();
     }
 

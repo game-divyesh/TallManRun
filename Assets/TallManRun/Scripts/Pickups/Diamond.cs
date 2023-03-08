@@ -22,6 +22,7 @@ public class Diamond : MonoBehaviour
         {
             DOTween.Kill(tween);
             GameManager.Instance.PickUpTheDiamond();
+            
             diamondCollectEffect.Play();
             diamondCollider.enabled = false;
             transform.localScale = Vector3.zero;
