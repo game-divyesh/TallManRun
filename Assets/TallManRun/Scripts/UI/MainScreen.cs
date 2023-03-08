@@ -39,6 +39,8 @@ public class MainScreen : UISystem.Screen
     [Header("Level Slider Script")]
     [SerializeField] private LevelSliderUI levelSliderUIScript;
 
+    
+
 
     #region UI SYSTEM
     public override void Awake()

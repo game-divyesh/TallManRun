@@ -21,16 +21,17 @@ public class CylinderGeneration : MonoBehaviour
 		_filter = GetComponent<MeshFilter>();
 	}
 
-	public void GetUpdated(Vector3 direction, float length)
+	public void GetUpdated(Vector3 direction, float length, string meshName)
 	{
 		_skewAmount = length;
-		GenerateMesh();
+		GenerateMesh(meshName);
 		transform.rotation = Quaternion.LookRotation(direction);
 	}
 
-	private void GenerateMesh()
+	private void GenerateMesh(string meshName)
 	{
 		_mesh = new Mesh();
+		_mesh.name = meshName;
 		//_mesh = new Mesh {name = "Rope"};
 		_filter.sharedMesh = _mesh;
 		

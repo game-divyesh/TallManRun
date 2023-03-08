@@ -11,6 +11,10 @@ public class LevelSliderUI : MonoBehaviour
     [Space]
     [SerializeField] private Slider slider;
 
+    [Space]
+    [Header("Env Sprite")]
+    [SerializeField] List<Sprite> envSprites;
+
     public void UpdateLevelSliderData()
     {
         levelUIDatas[GameData.CurrentLevel-1].GetComponent<UISystem.Scale>().StartAnimate();
@@ -49,6 +53,8 @@ public class LevelSliderUI : MonoBehaviour
                 levelUIDatas[index].GetComponent<UISystem.Scale>().StopAnimate();
             }
         }
+
+        levelUIDatas[levelUIDatas.Count - 1].GetComponent<Image>().sprite = envSprites[GameData.CurrentLevelsDeck];
     }
 
 }// CLASS

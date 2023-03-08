@@ -9,6 +9,7 @@ TagManager:
   - SprintTrigger
   - PoolEndJump
   - BounceCounting
+  - ClonePlayer
   layers:
   - Default
   - TransparentFX

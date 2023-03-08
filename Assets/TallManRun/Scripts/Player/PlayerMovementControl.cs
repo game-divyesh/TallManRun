@@ -333,7 +333,7 @@ public class PlayerMovementControl : GenericSingletonClass<PlayerMovementControl
 
     private void UpdateRopeControllerHeight()
     {
-        _ropeController.UpdateRope(hipTransform.transform, spineTransform.transform, _spineCylinder);
+        _ropeController.UpdateRope(hipTransform.transform, spineTransform.transform, _spineCylinder, "Player");
     }
 
     private void GenerateCylinders()
@@ -341,7 +341,7 @@ public class PlayerMovementControl : GenericSingletonClass<PlayerMovementControl
         var maxIterations = startingPositions.Count;
         for (var i = 0; i < maxIterations; i++)
         {
-            _ropeController.UpdateRope(startingPositions[i], endingPositions[i], cylinderList[i]);
+            _ropeController.UpdateRope(startingPositions[i], endingPositions[i], cylinderList[i], "Player");
 
             UpdatePlayerBodyMaterial(cylinderList[i].gameObject);
 
